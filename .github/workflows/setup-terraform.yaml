@@ -53,12 +53,15 @@ jobs:
         with:
           github-token: ${{ secrets.GITHUB_TOKEN }}
           script: |
-            const output = `#### Terraform Format and Style 🖌\`${{ steps.fmt.outcome }}\`
-            #### Terraform Initialization ⚙️\`${{ steps.init.outcome }}\`
-            #### Terraform Validation 🤖\`${{ steps.validate.outputs.stdout }}\`
-            #### Terraform Plan 📖\`${{ steps.plan.outcome }}\`
+            const output = `# Terraform checks & plan
 
-            <details><summary>Show Plan</summary>
+            ## Steps
+            - 🖌 \`terraform fmt\`: ${{ steps.fmt.outcome }}
+            - ⚙ \`terraform init\`: ️${{ steps.init.outcome }}
+            - 🤖 \`terraform validate\`: ${{ steps.validate.outputs.stdout }}
+            - 📖 \`terraform plan\`: ${{ steps.plan.outcome }}
+
+            <details><summary>Click to expand plan logs</summary>
 
             \`\`\`\n
             ${process.env.PLAN}
@@ -66,7 +69,13 @@ jobs:
 
             </details>
 
-            *Pusher: @${{ github.actor }}, Action: \`${{ github.event_name }}\`, Working Directory: \`${{ env.tf_actions_working_dir }}\`, Workflow: \`${{ github.workflow }}\`*`;
+            ## Context
+            - OS: \`${{ matrix.os }}\`
+            - Terraform version: \`${{ matrix.terraform-versions }}\`
+            - Pusher: @${{ github.actor }}
+            - Action: \`${{ github.event_name }}\`
+            - Working directory: \`${{ env.tf_actions_working_dir }}\`
+            - Workflow: \`${{ github.workflow }}\``;
 
             github.issues.createComment({
               issue_number: context.issue.number,
