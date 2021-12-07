@@ -1,7 +1,13 @@
-# Basic project template
+# Terraform project template
 
-Template I use for all sorts of projects. It includes:
+Template I use for Terraform projects. It includes:
 
+- [tfsec](https://github.com/aquasecurity/tfsec)
+  - Locally:
+    ```shell script
+    make tfsec
+    ```
+  - [GitHub Action](.github/workflows/tfsec_pr_commenter.yaml)
 - [super-linter](https://github.com/github/super-linter)
   - Locally:
     ```shell script
@@ -14,3 +20,9 @@ Template I use for all sorts of projects. It includes:
     make gitleaks
     ```
   - [GitHub Action](.github/workflows/gitleaks.yaml)
+
+## Usage
+
+```shell script
+make apply
+```
