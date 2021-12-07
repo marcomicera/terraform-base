@@ -6,7 +6,7 @@ TERRAFORM=terraform -chdir=$(TF_PATH)
 
 .PHONY: checks
 .SILENT: checks
-checks: linters gitleaks
+checks: linters gitleaks tfsec
 
 .PHONY: linters
 .SILENT: linters
@@ -31,6 +31,11 @@ gitleaks:
 		--verbose \
 		--redact \
 		detect
+
+.PHONY: tfsec
+.SILENT: tfsec
+tfsec:
+	tfsec $(TF_PATH)
 
 .PHONY: fmt
 fmt:
