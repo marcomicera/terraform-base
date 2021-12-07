@@ -1,3 +1,9 @@
+# Terraform code directory
+TF_PATH=terraform
+
+# Terraform binary
+TERRAFORM=terraform -chdir=$(TF_PATH)
+
 .PHONY: checks
 .SILENT: checks
 checks: linters gitleaks
@@ -25,3 +31,19 @@ gitleaks:
 		--verbose \
 		--redact \
 		detect
+
+.PHONY: fmt
+fmt:
+	$(TERRAFORM) fmt
+
+.PHONY: init
+init: fmt
+	$(TERRAFORM) init
+
+.PHONY: plan
+plan: init
+	$(TERRAFORM) plan
+
+.PHONY: apply
+apply: plan
+	$(TERRAFORM) apply
