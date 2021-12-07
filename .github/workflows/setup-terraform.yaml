@@ -6,6 +6,9 @@ on:
       - master
   pull_request:
 
+env:
+  tf_actions_working_dir: ./terraform
+
 defaults:
   run:
     shell: bash
@@ -20,7 +23,7 @@ jobs:
         terraform-versions: [ ~0.12, 0.12.x, <0.13.0 ]
     defaults:
       run:
-        working-directory: ./terraform
+        working-directory: ${{ env.tf_actions_working_dir }}
     steps:
       - uses: actions/checkout@v2
       - uses: hashicorp/setup-terraform@v1
