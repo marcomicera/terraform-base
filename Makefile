@@ -43,6 +43,7 @@ validate:
 	$(TERRAFORM) validate
 
 .PHONY: fmt
+.SILENT: fmt
 fmt:
 	$(TERRAFORM) fmt
 
