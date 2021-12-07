@@ -2,6 +2,8 @@
 
 Template I use for Terraform projects. It includes:
 
+- [setup-terraform](https://github.com/hashicorp/setup-terraform)
+  - [GitHub Action](.github/workflows/setup-terraform.yaml)
 - [tfsec](https://github.com/aquasecurity/tfsec)
   - Locally:
     ```shell script
